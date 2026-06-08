@@ -50,23 +50,24 @@ labels = data["labels"]  # (169671,)
 
 ---
 
-## Dataset 2 — External / Full Dataset (complete)
+## Dataset 2 — External Dataset (new-hez)
 
-**Kaggle slug:** `carloscanamejoy/dataset-spines-complete`  
-**Used in:** Complete cycle (external), reference for Paper 1 results
+**Kaggle slug:** `carloscanamejoy/dataset-new-hez`  
+**File:** `dataset-hez-profdario.npz`  
+**Used in:** Complete cycle (external), generalisation test
 
 | Property | Value |
 |---|---|
-| Total samples | 218,256 |
 | Image shape | 39 × 39 × 1 (grayscale) |
 | Parameter vector | 8 scalars |
+| Image content | $\langle s_z \rangle$ averaged over **all 5 layers** of the nanodot |
 
-This is the larger dataset used to train and evaluate the four architectures (Xception, DenseNet, ResNet, ViT) reported in Paper 1. It contains a broader sampling of the Hamiltonian parameter space.
+> ⚠️ **Critical difference from Dataset 1:** The internal dataset uses the $s_z$ component of the **central layer only** (`z = ⌊L̃/2⌋`). This dataset computes $\langle s_z \rangle$ as an **average over all 5 layers**. This creates a fundamental domain shift at the image level: averaged images are smoother, have lower contrast, and different spatial frequency content — even for the same Hamiltonian parameters. This is the primary suspected cause of poor image metrics in the external cycle.
 
 ### Download (Colab)
 
 ```python
-os.system("kaggle datasets download -d carloscanamejoy/dataset-spines-complete")
+os.system("kaggle datasets download -d carloscanamejoy/dataset-new-hez -p /content/kaggle_data/dataset-new-hez --unzip")
 ```
 
 ---
