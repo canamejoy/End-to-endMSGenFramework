@@ -47,6 +47,8 @@ STRUCTURE_COLORS = {
 def get_structure_label(cluster_id):
     """Map a numeric cluster ID to its structure name string."""
     return STRUCTURE_MAP.get(int(cluster_id), f"Unknown({cluster_id})")
+
+
 MODEL_COLORS = {
     "DDPM": "#2563EB",
     "CVAE-Xception": "#16A34A",
